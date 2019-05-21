@@ -5,6 +5,7 @@ class Clock {
         this.radius = radius
         this.bigHandAngle = bigHandAngle
         this.smallHandAngle = smallHandAngle
+        this.visible = true
     }
 
     _drawHand(ctx, length, angle, width) {
@@ -38,8 +39,10 @@ class Clock {
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
         ctx.stroke()
 
-        ctx.fillStyle = 'black'
-        this._drawHand(ctx, this.radius * 0.6, this.smallHandAngle, this.radius / 9)
-        this._drawHand(ctx, this.radius * 0.8, this.bigHandAngle, this.radius / 11)
+        if (this.visible) {
+            ctx.fillStyle = 'black'
+            this._drawHand(ctx, this.radius * 0.6, this.smallHandAngle, this.radius / 9)
+            this._drawHand(ctx, this.radius * 0.8, this.bigHandAngle, this.radius / 11)
+        }
     }
 }

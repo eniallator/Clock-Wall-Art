@@ -22,7 +22,7 @@ function init(textArtToParse) {
         clocks[y] = []
         const chars = lines[y].split('')
         for (let x = 0; x < maxWidth; x++) {
-            let angles = { big: 0, small: 0 }
+            let angles = {}
             if (charToAngles[chars[x]]) {
                 angles = charToAngles[chars[x]]
             }
@@ -34,6 +34,7 @@ function init(textArtToParse) {
                 angles.big,
                 angles.small
             )
+            clocks[y][x].visible = angles.big !== undefined
         }
     }
     return clocks
