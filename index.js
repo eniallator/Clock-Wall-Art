@@ -1,8 +1,10 @@
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
+const acceptedChars = document.getElementById('accepted-chars')
+acceptedChars.innerHTML = 'Accepted characters are: ' + Object.keys(charToAngles).join('')
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+canvas.width = window.innerWidth * 0.99
+canvas.height = window.innerHeight * 0.9
 
 function getMaxwidth(lines) {
     let maxWidth = 0
@@ -40,24 +42,12 @@ function init(textArtToParse) {
     return clocks
 }
 
-let clocks = init(`        ________________
-      _/                \\_
-     /  ______            \\
-    /              _____   \\
-   /     (@)        (@)     \\
-  |                          |
-  |                          |
-  |        ________          |
-   \\     _         \\        /
-    \\   / \\        ___     /
-     \\_/  (___-----   )  _/
-    /          ____--- _/
-   (          /_______/
-    \\________/`)
-
 function draw() {
     ctx.fillStyle = '#808080'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    const artInput = document.getElementById('art-input')
+    const clocks = init(artInput.value)
 
     for (let row of clocks) {
         for (let clock of row) {
